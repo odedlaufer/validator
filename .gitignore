@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Editor settings
+.vscode/
+.idea/
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and local data
+*.log
+*.out
+*.tmp
+*.csv
+*.yaml
+*.yml
+*.json
+
+
+# Test cache
+.pytest_cache/
+.tox/
+coverage.xml
+htmlcov/
+.cache/
+
+# Jupyter/IPython
+.ipynb_checkpoints
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Pre-commit & Lint
+.pre-commit-config.yaml~
+.pre-
