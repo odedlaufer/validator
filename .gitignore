@@ -23,8 +23,6 @@ Thumbs.db
 *.out
 *.tmp
 *.csv
-*.yaml
-*.yml
 *.json
 
 

@@ -1,0 +1,20 @@
+job:
+  - extract_data:
+      source: s3
+      path: raw/input.csv
+
+  - validate_schema:
+      schema_version: 1.2
+
+  - preprocessing:
+      - normalize_text:
+          from_column: product_name
+          to_column: product_name_cleaned
+
+      - hash_email:
+          from_column: email
+          to_column: email_hash
+
+      - clean_price:
+          from_column: price
+          to_column: clean_price
