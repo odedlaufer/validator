@@ -1,11 +1,13 @@
 import pandas as pd
+import pytest
 
-from validation.validate_and_process import validate_from_columns, validate_mandatory_fields
+from core.constants import MANDATORY_FIELDS
+from core.validator import validate_from_columns, validate_mandatory_fields
 
-MANDATORY = ["sku", "price", "color"]
 
+def test_validation_passes_with_yaml_and_config_mapping(monkeypatch):
+    monkeypatch.setattr(MANDATORY_FIELDS, ["sku", "price", "color"])
 
-def test_validation_passes_with_yaml_and_config_mapping():
     modules = [
         {"clean_price": {"from_column": "raw_price", "to_column": "price"}},
         {"normalize_text": {"from_column": "product_color", "to_column": "color"}},
@@ -25,7 +27,7 @@ def test_validation_passes_with_yaml_and_config_mapping():
         columns=["raw_price", "product_color", "sku", "category", "image_url", "pdp_link", "gender"]
     )
 
-    # should not raise
+    # Should not raise
     validate_mandatory_fields(modules, config, df)
     validate_from_columns(modules, df)
 
@@ -33,19 +35,17 @@ def test_validation_passes_with_yaml_and_config_mapping():
 def test_validation_fails_missing_from_column():
     modules = [{"clean_price": {"from_column": "missing", "to_column": "price"}}]
     df = pd.DataFrame(columns=["price"])
-    try:
+
+    with pytest.raises(ValueError, match="from_column.*not found"):
         validate_from_columns(modules, df)
-        assert False, "Expected ValueError for missing from_column"
-    except ValueError as e:
-        assert "from_column" in str(e)
 
 
-def test_validation_fails_missing_mandatory_field_everywhere():
+def test_validation_fails_missing_mandatory_field(monkeypatch):
+    monkeypatch.setattr(MANDATORY_FIELDS, ["sku", "price"])
+
     modules = [{"normalize_text": {"from_column": "product", "to_column": "product_cleaned"}}]
-    config = {"price": "price"}  # 'sku' missing
+    config = {"price": "price"}  # 'sku' is missing
     df = pd.DataFrame(columns=["product", "price"])
-    try:
+
+    with pytest.raises(ValueError, match="Mandatory field"):
         validate_mandatory_fields(modules, config, df)
-        assert False, "Expected ValueError for missing mandatory field"
-    except ValueError as e:
-        assert "Mandatory field" in str(e)

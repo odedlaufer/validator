@@ -1,0 +1,8 @@
+job:
+  - preprocessing:
+      - lowercase_name:
+          from_column: name
+          to_column: name_clean
+      - extract_gender:
+          from_column: gender
+          to_column: gender_clean

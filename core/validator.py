@@ -1,4 +1,4 @@
-MANDATORY = ["sku", "category", "gender", "color", "image_url", "pdp_link", "price"]
+from core.constants import MANDATORY_FIELDS
 
 
 def validate_mandatory_fields(modules, json_config, df_csv):
@@ -6,7 +6,7 @@ def validate_mandatory_fields(modules, json_config, df_csv):
     csv_columns = df_csv.columns.tolist()
     json_values = json_config.values()
 
-    for field in MANDATORY:
+    for field in MANDATORY_FIELDS:
         if field in to_columns:
             if field not in json_values:
                 raise ValueError(
