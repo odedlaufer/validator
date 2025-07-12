@@ -1,12 +1,11 @@
 import pandas as pd
 import pytest
 
-from core.constants import MANDATORY_FIELDS
 from core.validator import validate_from_columns, validate_mandatory_fields
 
 
 def test_validation_passes_with_yaml_and_config_mapping(monkeypatch):
-    monkeypatch.setattr(MANDATORY_FIELDS, ["sku", "price", "color"])
+    monkeypatch.setattr("core.constants.MANDATORY_FIELDS", ["sku", "price", "color"])
 
     modules = [
         {"clean_price": {"from_column": "raw_price", "to_column": "price"}},
@@ -41,7 +40,7 @@ def test_validation_fails_missing_from_column():
 
 
 def test_validation_fails_missing_mandatory_field(monkeypatch):
-    monkeypatch.setattr(MANDATORY_FIELDS, ["sku", "price"])
+    monkeypatch.setattr("core.constants.MANDATORY_FIELDS", ["sku", "price"])
 
     modules = [{"normalize_text": {"from_column": "product", "to_column": "product_cleaned"}}]
     config = {"price": "price"}  # 'sku' is missing
