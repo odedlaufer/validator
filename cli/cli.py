@@ -51,5 +51,5 @@ def main():
         logger.info(f"Done! Processed CSV saved to: {args.output}")
 
     except Exception as e:
-        logger.error(f"Error: {e}")
+        logger.error(f"Unhandled exception occurred: {e}")
         exit(1)

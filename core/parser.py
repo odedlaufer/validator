@@ -15,8 +15,11 @@ def parse_yaml(yaml_path):
 
 
 def parse_json(json_path):
-    with open(json_path, "r") as f:
-        return json.load(f)
+    try:
+        with open(json_path, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        raise ValueError(f"Failed to parse JSON: {e}")
 
 
 def parse_csv(csv_path):
