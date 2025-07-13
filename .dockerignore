@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+data_tests/
+tests/
+.idea/
+.vscode/
+.env
