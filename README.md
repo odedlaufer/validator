@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 ---
 
-## Usage
+##** Usage**
 
 ```bash
 python main.py \
@@ -48,7 +48,7 @@ python main.py \
 
 ---
 
-## Arguments
+## **Arguments**
 
 | Flag       | Description                          | Required                             |
 | ---------- | ------------------------------------ | ------------------------------------ |
@@ -59,7 +59,7 @@ python main.py \
 
 ---
 
-## Testing
+## **Testing**
 
 Run all unit and CLI tests using pytest:
 
@@ -73,7 +73,7 @@ make test
 
 ---
 
-## Docker Usage
+## **Docker Usage**
 
 Build the Docker image:
 
@@ -82,7 +82,7 @@ make docker-build
 
 ---
 
-## Project Structure
+## **Project Structure**
 
 cli/          - CLI entry point and orchestration (main.py, argument parsing)
 core/         - Main logic for parsing, validation, processing
@@ -92,7 +92,7 @@ tests/        - Unit and CLI integration tests
 
 ---
 
-## Development Tools
+## **Development Tools**
 
 Code Formatting: Black, isort
 Linting: flake8
@@ -102,7 +102,6 @@ CI/CD: GitHub Actions (pre-commit, test jobs)
 
 ---
 
-## Author
+## **Author**
 
-Author
 Oded Laufer - This project was developed as part of a learning initiative to build clean, testable, and extensible backend tools.
