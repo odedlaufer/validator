@@ -1,7 +1,13 @@
 import importlib
+import logging
+from typing import Dict, List
+
+import pandas as pd
 
 
-def apply_modules(modules, df, logger):
+def apply_modules(
+    modules: List[Dict[str, Dict[str, str]]], df: pd.DataFrame, logger: logging.Logger
+) -> pd.DataFrame:
     for module_entry in modules:
         module_name = list(module_entry.keys())[0]
         module_data = module_entry[module_name]
