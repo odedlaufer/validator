@@ -31,7 +31,7 @@ A modular command-line tool for validating and processing CSV files based on a c
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/cli-validator.git
+git clone https://github.com/odedlaufer/validator.git
 cd cli-validator
 pip install -r requirements.txt
 ```
