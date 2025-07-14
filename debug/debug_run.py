@@ -1,4 +1,10 @@
-# debug_run.py
+"""
+debug_run.py
+
+Quick entry point for local debugging and testing of the CLI validation and transformation pipeline.
+This script runs without argparse or CLI flags, using hardcoded paths for development purposes.
+"""
+
 from cli.cli import run_processing, run_validation, setup_logger
 from core.parser import parse_csv, parse_json, parse_yaml
 

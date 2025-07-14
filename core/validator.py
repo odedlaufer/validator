@@ -1,7 +1,13 @@
+from typing import Dict, List
+
+import pandas as pd
+
 from core.constants import MANDATORY_FIELDS
 
 
-def validate_mandatory_fields(modules, json_config, df_csv):
+def validate_mandatory_fields(
+    modules: List[Dict[str, Dict[str, str]]], json_config: Dict[str, str], df_csv: pd.DataFrame
+) -> None:
     to_columns = [list(m.values())[0]["to_column"] for m in modules]
     csv_columns = df_csv.columns.tolist()
     json_values = json_config.values()
@@ -24,7 +30,7 @@ def validate_mandatory_fields(modules, json_config, df_csv):
                 )
 
 
-def validate_from_columns(modules, df_csv):
+def validate_from_columns(modules: List[Dict[str, Dict[str, str]]], df_csv: pd.DataFrame) -> None:
     csv_columns = df_csv.columns.tolist()
     for module in modules:
         module_body = list(module.values())[0]
