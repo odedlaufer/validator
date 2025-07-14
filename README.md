@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 ---
 
-##** Usage**
+## **Usage**
 
 ```bash
 python main.py \
@@ -45,6 +45,7 @@ python main.py \
   --json test_data/valid/config.json \
   --csv test_data/valid/data.csv \
   --output processed_output.csv
+```
 
 ---
 
@@ -65,11 +66,13 @@ Run all unit and CLI tests using pytest:
 
 ```bash
 pytest
+```
 
 To test the CLI with example datasets:
 
 ```bash
 make test
+```
 
 ---
 
@@ -79,26 +82,28 @@ Build the Docker image:
 
 ```bash
 make docker-build
+```
 
 ---
 
 ## **Project Structure**
-
+```
 cli/          - CLI entry point and orchestration (main.py, argument parsing)
 core/         - Main logic for parsing, validation, processing
 modules/      - Modular transformation steps (loaded dynamically)
 test_data/    - Valid and invalid datasets for integration testing
 tests/        - Unit and CLI integration tests
+```
 
 ---
 
 ## **Development Tools**
 
-Code Formatting: Black, isort
-Linting: flake8
-Security Scanning: gitleaks
-Automation: Makefile
-CI/CD: GitHub Actions (pre-commit, test jobs)
+- Code Formatting: Black, isort
+- Linting: flake8
+- Security Scanning: gitleaks
+- Automation: Makefile
+- CI/CD: GitHub Actions (pre-commit, test jobs)
 
 ---
 
