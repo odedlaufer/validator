@@ -41,7 +41,15 @@ docker-test: ## Run both Docker validation cases
 lint: ## Run pre-commit linting
 	pre-commit run --all-files
 
+check-venv: ## Check if venv is activated
+	@if which python | grep -q '\.venv'; then \
+		echo "Virtual environment is active."; \
+	else \
+		echo "Virtual environment not active. Run: source .venv/bin/activate"; \
+		exit 1; \
+	fi
+
 help: ## Show this help message
 	@awk 'BEGIN {FS = ":.*?## "}; /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' Makefile
 
-.PHONY: valid invalid docker-valid docker-invalid docker-build test docker-test clean lint help
+.PHONY: valid invalid docker-valid docker-invalid docker-build test docker-test clean lint check-venv help
