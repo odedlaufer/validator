@@ -1,7 +1,10 @@
+include .env
+
 VALID_PATH ?= ./test_data/valid
 INVALID_PATH ?= ./test_data/invalid
-MOUNT_PATH = /app/test_data
 IMAGE = cli-validator
+
+ABS_TEST_DATA := $(shell realpath test_data)
 
 valid: ## Run validator on valid input
 	python main.py --yaml $(VALID_PATH)/plan.yaml --json $(VALID_PATH)/config.json --csv $(VALID_PATH)/data.csv
@@ -13,13 +16,13 @@ docker-build: ## Build Docker image
 	docker build -t $(IMAGE) .
 
 docker-valid: ## Run validator in Docker on valid input
-	docker run --rm -v $(dir $(VALID_PATH)):/app/test_data $(IMAGE) \
+	docker run --rm -v $(ABS_TEST_DATA):/app/test_data $(IMAGE) \
 		--yaml test_data/valid/plan.yaml \
 		--json test_data/valid/config.json \
 		--csv test_data/valid/data.csv
 
 docker-invalid: ## Run validator in Docker on invalid input
-	docker run --rm -v $(dir $(INVALID_PATH)):/app/test_data $(IMAGE) \
+	docker run --rm -v $(ABS_TEST_DATA):/app/test_data $(IMAGE) \
 		--yaml test_data/invalid/plan.yaml \
 		--json test_data/invalid/config.json \
 		--csv test_data/invalid/data.csv
@@ -27,7 +30,7 @@ docker-invalid: ## Run validator in Docker on invalid input
 clean: ## Remove generated output file
 	rm -f processed_output.csv
 
-test: ## Run both valid and invalid cases
+test: ## Run both valid and invalid cases locally
 	make valid
 	make invalid || true
 
