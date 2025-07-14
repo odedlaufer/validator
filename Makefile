@@ -1,5 +1,7 @@
-VALID_PATH=/Users/odedlaufer/validation/test_data/valid
-INVALID_PATH=/Users/odedlaufer/validation/test_data/invalid
+include .env
+
+VALID_PATH ?= ./test_data/valid
+INVALID_PATH ?= ./test_data/invalid
 
 MOUNT_PATH=/app/test_data
 
